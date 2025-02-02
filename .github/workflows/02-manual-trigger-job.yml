@@ -4,6 +4,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  create_dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Azure CLI
+        run: sudo apt-get install azure-cli
+      - name: Create dataset
+        run: |
+          az ml data create --name diabetes-dev-folder --path experimentation/data --type uri_folder --resource-group rg-dp100-labs --workspace-name mlw-dp100-labs_2
+
   train:
     runs-on: ubuntu-latest
     steps:
