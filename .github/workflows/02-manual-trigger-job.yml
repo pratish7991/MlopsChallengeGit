@@ -21,8 +21,8 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "RESOURCE_GROUP=<your-resource-group-name>" >> $GITHUB_ENV
-          echo "WORKSPACE_NAME=<your-aml-workspace-name>" >> $GITHUB_ENV
+          echo "RESOURCE_GROUP=rg-dp100-labs" >> $GITHUB_ENV
+          echo "WORKSPACE_NAME=mlw-dp100-labs_2" >> $GITHUB_ENV
 
       - name: Submit Azure ML Job
         run: |
