@@ -11,10 +11,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Azure CLI
         run: sudo apt-get install azure-cli
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}  # Add your service principal here
       - name: Create dataset
         run: |
           az ml data create --name diabetes-dev-folder --path experimentation/data --type uri_folder --resource-group rg-dp100-labs --workspace-name mlw-dp100-labs_2
-
   train:
     runs-on: ubuntu-latest
     steps:
