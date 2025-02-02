@@ -9,6 +9,6 @@ inputs:
 parameters:
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: azureml:ciPratishComputeCluster_1
+compute: azureml:ciPratishComputeCluster
 experiment_name: diabetes_classification
 description: "Training a diabetes classification model using Azure ML job"
