@@ -1,7 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 code: model
 command: >-
-  az ml data create --name diabetes-dev-folder --path experimentation/data --type uri_folder --resource-group rg-dp100-labs --workspace-name mlw-dp100-labs_2 && 
   python train.py --training_data ${{inputs.training_data}} --reg_rate 0.02
 inputs:
   training_data:
@@ -10,6 +9,6 @@ inputs:
 parameters:
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: azureml:ciPratishComputeCluster_1
+compute: azureml:ciPratishComputeCluster
 experiment_name: diabetes_classification
 description: "Training a diabetes classification model using Azure ML job"
