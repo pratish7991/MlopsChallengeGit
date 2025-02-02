@@ -7,13 +7,25 @@ jobs:
   train:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repo
-      uses: actions/checkout@main
-    - name: Install az ml extension
-      run: az extension add -n ml -y
-    - name: Azure login
-      uses: azure/login@v1
-      with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
+      - name: Check out repo
+        uses: actions/checkout@main
 
+      - name: Install Azure CLI & ML extension
+        run: |
+          az extension add -n ml -y
 
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set environment variables
+        run: |
+          echo "RESOURCE_GROUP=<your-resource-group-name>" >> $GITHUB_ENV
+          echo "WORKSPACE_NAME=<your-aml-workspace-name>" >> $GITHUB_ENV
+
+      - name: Submit Azure ML Job
+        run: |
+          az ml job create --file job.yml \
+            --resource-group $RESOURCE_GROUP \
+            --workspace-name $WORKSPACE_NAME
