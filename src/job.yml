@@ -6,7 +6,7 @@ inputs:
   training_data:
     type: uri_folder
     path: azureml://datastores/diabetes-dev-folder/paths/experimentation/data
-    version: 1
+
 parameters:
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
